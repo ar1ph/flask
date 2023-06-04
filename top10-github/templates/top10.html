@@ -13,8 +13,7 @@
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.items);
-        top10para.innerHTML = data.items.map(({ id, full_name }) => (`<p>${id} ${full_name}</p>`));
+        top10para.innerHTML = data.items.map(({ id, full_name, stargazers_count }) => (`<p>${id} ${full_name} ${stargazers_count}</p>`));
       });
   </script>
 </html>
