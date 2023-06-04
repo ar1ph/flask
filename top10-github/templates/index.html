@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Index Page</h1>
+    {% if user %}
+    <p>Welcome {{ user }}!</p>
+    {% else %}
+    <p>Hello</p>
+    {% endif %}
+    <a href="/top10">Top 10 GitHub Repos</a>
+  </body>
+</html>
