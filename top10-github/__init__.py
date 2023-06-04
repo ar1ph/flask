@@ -1,6 +1,8 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
+import requests
+import json
 
 
 def create_app(test_config=None):
@@ -32,8 +34,15 @@ def create_app(test_config=None):
 
     # Top 10 Page
     @app.route('/top10')
-    def top10repos():
+    def top10page():
         return render_template('top10.html') 
     
+    @app.route('/api/top10repos')
+    def top10fetch():
+        apiResponse = requests.get("https://api.github.com/search/repositories?q=stars:%3E100&sort=stars&per_page=10&order=desc")
+        data = apiResponse.json()
+        res = [{'id': item['id'], 'full_name': item['full_name'], 'stargazers_count': item['stargazers_count']} for item in data['items']]
+        print(res)
+        return  jsonify(res)
 
     return app
