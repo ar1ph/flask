@@ -10,4 +10,4 @@ EXPOSE 5000
 
 WORKDIR /
 
-CMD ["python", "-m", "flask", "--app", "top10", "run", "--host=0.0.0.0"]
+#CMD ["python", "-m", "flask", "--app", "top10", "run", "--host=0.0.0.0"]

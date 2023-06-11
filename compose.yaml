@@ -1,0 +1,29 @@
+
+services:
+  web:
+    depends_on:
+      - db
+    restart: always
+    build: ./top10-github
+    command: python -m flask --app top10 run --host=0.0.0.0
+    volumes:
+      - ./top10-github:/usr/src/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=top10db
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data: 
+
+
