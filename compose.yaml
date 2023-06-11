@@ -6,8 +6,6 @@ services:
     restart: always
     build: ./top10-github
     command: python -m flask --app top10 run --host=0.0.0.0
-    volumes:
-      - ./top10-github:/usr/src/app/
     ports:
       - 5000:5000
     env_file:

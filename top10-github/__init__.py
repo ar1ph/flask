@@ -4,7 +4,6 @@ from flask import Flask, render_template, jsonify
 import requests
 import json
 import psycopg2
-import time
 
 
 def create_app(test_config=None):
