@@ -10,6 +10,19 @@ services:
       - 5000:5000
     env_file:
       - ./.env.dev
+  angular:
+    build: ./frontend
+    ports:
+      - 4200:80
+    depends_on:
+      - web
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - angular
+      - web
   db:
     image: postgres:13
     volumes:

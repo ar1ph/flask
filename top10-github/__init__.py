@@ -3,12 +3,14 @@ import os
 from flask import Flask, render_template, jsonify
 import requests
 import json
+from flask_cors import CORS, cross_origin
 import psycopg2
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    
     app.config.from_mapping(
         SECRET_KEY='shh',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -26,6 +28,8 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    CORS(app)
 
     
     conn = psycopg2.connect(host="db", dbname = "top10db", user="postgres", password = "postgres", port="5432")
@@ -57,6 +61,6 @@ def create_app(test_config=None):
     def top10fetch():
         cur.execute("SELECT * FROM Test")
         res = cur.fetchone()
-        return  jsonify(res)
+        return  jsonify(res[1])
 
     return app

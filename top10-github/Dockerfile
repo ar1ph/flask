@@ -6,7 +6,8 @@ COPY . /top10
 
 RUN pip install -r requirements.txt
 
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get install -y netcat-traditional
 
 EXPOSE 5000
 
