@@ -21,7 +21,7 @@ export class Top10TableComponent {
   }
 
   fetchData(){
-    this.http.get<Repo[]>('/api/top10repos').subscribe(
+    this.http.get<Repo[]>('http://localhost:5000/api/top10repos').subscribe(
       data => this.dataSource = data,
       err => console.log(err)
     )
